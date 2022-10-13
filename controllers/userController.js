@@ -35,6 +35,8 @@ module.exports.registerUser = (requestBody) => {
 }
 // End of User registration
 
+
+
 // Start of User Authentication
 module.exports.loginUser = (requestBody) => {
 

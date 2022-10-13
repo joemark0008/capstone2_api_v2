@@ -6,6 +6,7 @@ const port = process.env.PORT || 4000;
 
 // Require Routes
 const userRoutes = require('./routes/userRoutes')
+const productRoutes = require('./routes/productRoutes')
 
 const app = express();
 
@@ -30,7 +31,7 @@ db.once("open", () => console.log("Now connected to MongoDB Atlas!"));
 
 // End routes
 app.use('/users', userRoutes); 
-
+app.use('/products', productRoutes); 
 
 // Listen to the port
 app.listen(port, () => {

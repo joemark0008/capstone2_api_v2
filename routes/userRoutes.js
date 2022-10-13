@@ -9,6 +9,7 @@ router.post('/register', (request, response) => {
 });
 
 
+
 // User Authentication
 router.post('/login', (request, response) => {
 	userController.loginUser(request.body).then(resultFromController => response.send(resultFromController))

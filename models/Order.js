@@ -4,17 +4,17 @@ const orderSchema = new mongoose.Schema({
 
 	userId: {
 		type: String,
-		require: [true, 'User ID is required']
+		required: [true, 'User ID is required']
 	},
 	products: [
 		{
 			productId: {
 				type: String,
-				require: [true, 'Product ID is required']
+				required: [true, 'Product ID is required']
 			},
 			quantity: {
 				type: Number,
-				require: [true, 'Product quantity is required']
+				required: [true, 'Product quantity is required']
 			}
 		}
 	],
