@@ -25,6 +25,33 @@ const userSchema = new mongoose.Schema({
 	isAdmin: {
 		type: Boolean,
 		default: false
+	},
+	userOrders : [
+		{
+			productId: {
+				type: String
+			},
+			productName: {
+				type: String
+			},
+			quantity: {
+				type: Number
+			},
+			price: {
+				type: Number
+			},
+			subTotal: {
+				type: Number
+			},
+			purchasedOn: {
+				type: Date,
+				default: new Date()
+			},
+		}
+	],
+	registeredOn: {
+		type: Date,
+		default: new Date()
 	}
 })
 

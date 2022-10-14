@@ -1,18 +1,13 @@
 const Product = require('../models/Product');
-const User = require('../models/User')
+const User = require('../models/User');
 
 
 
 // Start of Creating Product (Admin only)
 module.exports.addProduct = (data, requestBody) => {
-	console.log('data')
-	console.log(data)
-	console.log('requestBody')
-	console.log(requestBody)
+
 	return User.findById(data.id).then(result => {
 
-		console.log('result')
-		console.log(result)
 		if(result.isAdmin === true) { 
 
 			let newProduct = new Product ({
@@ -23,12 +18,6 @@ module.exports.addProduct = (data, requestBody) => {
 			})
 
 			return Product.find({name:requestBody.name}).then(result => {
-
-				console.log('{name:requestBody.name}')
-				console.log({name:requestBody.name})
-
-				console.log('result')
-				console.log(result)
 
 				if(result.length > 0) {
 					return `${result[0].name} item is already exist!`
@@ -58,9 +47,6 @@ module.exports.getActiveProduct = () => {
 
 	return Product.find({isActive: true}).then(result => {
 
-		console.log('result')
-		console.log(result)
-
 		if(result.length === 0) {
 			return 'No product available'
 		}
@@ -71,16 +57,40 @@ module.exports.getActiveProduct = () => {
 //End of Retrieving all active products
 
 
+// Start of Retrieving all products (Admin Only)
+module.exports.getAllProducts = (userData) => {
+
+	return User.findById(userData.id).then(result => {
+
+		if(result.isAdmin === true) {
+
+			return Product.find({}).then(result => {
+
+				if(result.length > 0) {
+
+					return result
+				} else{
+
+					return 'Product in empty'
+				}
+			})
+		} else {
+
+			return 'Only admin can retrieve all product'
+		}
+	})
+}
+
+
+// End of Retrieving all products (Admin Only)
+
+
 
 // Start of Retrieving single product
 module.exports.getSpecificProduct = (requestParams) => {
 
-	console.log('requestParams')
-	console.log(requestParams)
 	return Product.findById(requestParams.productId).then(result => {
 
-		console.log('result')
-		console.log(result)
 		return result
 	}).catch(error => {
 		return 'Product cant found'
@@ -92,15 +102,9 @@ module.exports.getSpecificProduct = (requestParams) => {
 
 // Start of Updating Product information (Admin only)
 module.exports.updateProduct = (data, requestBody) => {
-	console.log('userData')
-	console.log(data)
-	console.log('requestBody')
-	console.log(requestBody)
 
 	return Product.findById(data.productId).then(result => {
 
-		console.log('result')
-		console.log(result)
 		if(data.isAdmin === true) {
 
 			let updatedProduct = {
@@ -132,13 +136,7 @@ module.exports.updateProduct = (data, requestBody) => {
 //Start of Archiving Product (Admin only)
 module.exports.archiveProduct = (data) => {
 
-	console.log('data')
-	console.log(data)
-
 	return Product.findById(data.productId).then(result => {
-
-		console.log("result")
-		console.log(result)
 
 		if(data.isAdmin === true) {
 
@@ -168,13 +166,7 @@ module.exports.archiveProduct = (data) => {
 //Start of Enable Product (Admin only)
 module.exports.enableProduct = (data) => {
 
-	console.log('data')
-	console.log(data)
-
 	return Product.findById(data.productId).then(result => {
-
-		console.log("result")
-		console.log(result)
 
 		if(data.isAdmin === true) {
 

@@ -6,15 +6,31 @@ const orderSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'User ID is required']
 	},
-	products: [
+	email: {
+		type: String,
+		required: [true, 'Email is required']
+	},
+	orderedProduct : [
 		{
 			productId: {
 				type: String,
 				required: [true, 'Product ID is required']
 			},
+			productName: {
+				type: String,
+				required: [true, 'Product name is required']
+			},
 			quantity: {
 				type: Number,
 				required: [true, 'Product quantity is required']
+			},
+			price: {
+				type: Number,
+				required: [true, 'Product price is required']
+			},
+			subTotal: {
+				type: Number,
+				required: [true, 'Subtotal is required']
 			}
 		}
 	],
@@ -24,7 +40,11 @@ const orderSchema = new mongoose.Schema({
 	},
 	purchasedOn: {
 		type: Date,
-		defaul: new Date()
+		default: new Date()
+	},
+	isDelivered: {
+		type: Boolean,
+		default: false
 	}
 })
 

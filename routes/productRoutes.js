@@ -21,7 +21,13 @@ router.get('/', (request, response) => {
 	productController.getActiveProduct().then(resultFromController => response.send(resultFromController));
 });
 
+// Retrieve all products (Admin Only)
+router.get('/all', auth.verify, (request, response) => {
 
+	const userData = auth.decode(request.headers.authorization)
+
+	productController.getAllProducts(userData).then(resultFromController => response.send(resultFromController));
+})
 
 // Retrieve single product
 router.get('/:productId', (request, response) => {
