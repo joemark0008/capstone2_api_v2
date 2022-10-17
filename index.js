@@ -7,6 +7,7 @@ const port = process.env.PORT || 4000;
 // Require Routes
 const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
+const orderRoutes = require('./routes/orderRoutes')
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.json());
 
 
 // Connect to our MongoDB Database
-mongoose.connect("mongodb+srv://admin:admin123@batch204-hufano.2rq00td.mongodb.net/Capstone-2?retryWrites=true&w=majority", 
+mongoose.connect("mongodb+srv://joemark0008:SX5pkSdGo0Xuk2dj@cluster0.jjmnk.mongodb.net/capstone?retryWrites=true&w=majority", 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -32,6 +33,7 @@ db.once("open", () => console.log("Now connected to MongoDB Atlas!"));
 // End routes
 app.use('/users', userRoutes); 
 app.use('/products', productRoutes); 
+app.use('/order', orderRoutes); 
 
 // Listen to the port
 app.listen(port, () => {

@@ -1,21 +1,22 @@
+const { Schema, model } = require("mongoose");
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
 
-	userId: {
-		type: String,
-		required: [true, 'User ID is required']
-	},
-	email: {
-		type: String,
-		required: [true, 'Email is required']
-	},
-	orderedProduct : [
+	// userId: {
+	// 	type: String,
+	// 	required: [true, 'User ID is required']
+	// },
+	// email: {
+	// 	type: String,
+	// 	required: [true, 'Email is required']
+	// },
+
+	orderUser :  { type: Schema.Types.ObjectId, ref: "User" },
+
+	orderedProduct: [
 		{
-			productId: {
-				type: String,
-				required: [true, 'Product ID is required']
-			},
+			
 			productName: {
 				type: String,
 				required: [true, 'Product name is required']

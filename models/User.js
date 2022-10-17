@@ -1,4 +1,8 @@
+
+const { Schema, model } = require("mongoose");
 const mongoose = require('mongoose');
+const Order = require('../models/Order');
+
 
 const userSchema = new mongoose.Schema({
 
@@ -26,29 +30,9 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
-	userOrders : [
-		{
-			productId: {
-				type: String
-			},
-			productName: {
-				type: String
-			},
-			quantity: {
-				type: Number
-			},
-			price: {
-				type: Number
-			},
-			subTotal: {
-				type: Number
-			},
-			purchasedOn: {
-				type: Date,
-				default: new Date()
-			},
-		}
-	],
+
+	userOrders: { type: Schema.Types.ObjectId, ref: "Order" },
+
 	registeredOn: {
 		type: Date,
 		default: new Date()

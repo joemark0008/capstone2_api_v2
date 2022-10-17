@@ -9,7 +9,7 @@ router.post('/register', (request, response) => {
 });
 
 // Retrieve all users (Admin only)
-router.get('/all' , auth.verify, (request, response) => {
+router.get('/all', auth.verify, (request, response) => {
 
 	const userData = auth.decode(request.headers.authorization)
 
@@ -18,7 +18,7 @@ router.get('/all' , auth.verify, (request, response) => {
 
 
 // Retrieve the details of a user.
-router.get('/profile' , auth.verify, (request, response) => {
+router.get('/profile', auth.verify, (request, response) => {
 
 	const userData = auth.decode(request.headers.authorization)
 
@@ -32,7 +32,7 @@ router.post('/login', (request, response) => {
 });
 
 // Set user as admin (Admin only)
-router.put('/:userId/setAdmin' , auth.verify , (request, response) => {
+router.put('/:userId/setAdmin', auth.verify, (request, response) => {
 
 	const data = {
 		userId: request.params.userId,
@@ -43,7 +43,7 @@ router.put('/:userId/setAdmin' , auth.verify , (request, response) => {
 })
 
 // Set admin as user (Admin only)
-router.put('/:userId/removeAdmin' , auth.verify , (request, response) => {
+router.put('/:userId/removeAdmin', auth.verify, (request, response) => {
 
 	const data = {
 		userId: request.params.userId,
